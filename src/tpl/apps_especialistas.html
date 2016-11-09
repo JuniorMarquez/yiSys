@@ -4,23 +4,23 @@
         /* Since Angular has this but needs to load, this gives us the class early. */
         /*.app { background-color: #f0f3f4; }*/
     </style> <!--hbox layout -->
-<script type="text/ng-template" id="modalSalidaIngrediente.html">
-            <div ng-include="'tpl/modalSalidaIngrediente.html'"></div>
+<script type="text/ng-template" id="modalSalidaEspecialista.html">
+            <div ng-include="'tpl/modalSalidaEspecialista.html'"></div>
           </script>
          
            <script type="text/ng-template" id="modalConfirm.html">
             <div ng-include="'tpl/modalConfirm.html'"></div>
           </script>
-              <script type="text/ng-template" id="modalConfirmBorrarIngrediente.html">
-            <div ng-include="'tpl/modalConfirmBorrarIngrediente.html'"></div>
+              <script type="text/ng-template" id="modalConfirmBorrarEspecialista.html">
+            <div ng-include="'tpl/modalConfirmBorrarEspecialista.html'"></div>
           </script>
           <script type="text/ng-template" id="modalConfirm2.html">
             <div ng-include="'tpl/modalConfirm2.html'"></div>
           </script>
           
           
-           <script type="text/ng-template" id="modalEntradaIngrediente.html">
-            <div ng-include="'tpl/modalEntradaIngrediente.html'"></div>
+           <script type="text/ng-template" id="modalEntradaEspecialista.html">
+            <div ng-include="'tpl/modalEntradaEspecialista.html'"></div>
           </script>
           
          
@@ -79,10 +79,10 @@
           <div class="cell-inner">
             <div class="m-t-n-xxs">
               <div class="list-group list-group-lg no-radius no-border no-bg m-b-none">
-                <a ng-repeat="item in items | filter:{categoria:filter} | filter:query | orderBy:'barcode'" class="list-group-item m-l" ng-class="{'select m-l-none': item.selected }" ng-click="selectItem(item)">
+                <a ng-repeat="item in items | filter:{categoria:filter} | filter:query | orderBy:'cedula'" class="list-group-item m-l" ng-class="{'select m-l-none': item.selected }" ng-click="selectItem(item)">
                   <span class="block text-ellipsis m-l-n text-md" ng-class="{'m-l-none': item.selected }" popover="{{item.nombre}}" popover-trigger="mouseenter" popover-placement="bottom">
-                    {{ item.barcode }} <strong>{{ item.nombre }}</strong>
-                    <span ng-hide="item.barcode || item.nombre">sin nombre</span>
+                    {{ item.cedula }} <strong>{{ item.nombre }}</strong>
+                    <span ng-hide="item.cedula || item.nombre">sin nombre</span>
                   </span>
                 </a>
               </div>
@@ -104,7 +104,7 @@
       <div class="wrapper-sm b-b">
        <toaster-container toaster-options="{'position-class': 'toast-top-right', 'close-button':true}"></toaster-container>
         <div class="m-t-n-xxs m-b-n-xxs m-l-xs">
-          <a  class="btn btn-xs btn-default pull-right" ng-hide="!item" ng-click="openConfirmBorrarEspecialista(item)"><i tooltip="Borrar ingrediente" tooltip-placement="left" class="fa fa-times"></i></a>
+          <a  class="btn btn-xs btn-default pull-right" ng-hide="!item" ng-click="openConfirmBorrarEspecialista(item)"><i tooltip="Borrar especialista" tooltip-placement="left" class="fa fa-times"></i></a>
           <a class="btn btn-xs btn-primary" ng-hide="item.editing || !item" ng-click="editItem(item)">Editar</a>
           <a class="btn btn-xs btn-success" ng-show="item.editing" ng-click="doneEditingEspecialista(item)">Guardar cambios</a>
         </div>
@@ -116,16 +116,17 @@
               <div class="hbox h-auto m-b-lg">
                 <div class="col text-center w-sm2">
                 <i class="fa fa-cube block m-b-xs2 fa-5x" ng-show="item.editing || item.selected"  ></i><p></p>
-               <!--  <i class=" glyphicon glyphicon-barcode block m-b-xs fa-2x" ng-show="item.avatar"></i>  -->
-                <p></p><span class="text-center">{{item.barcode}}</span>
+               <!--  <i class=" glyphicon glyphicon-cedula block m-b-xs fa-2x" ng-show="item.avatar"></i>  -->
+                <p></p><span class="text-center">{{item.cedula}}</span>
                   
                 </div>
                 <div class="colEditada v-middle font-thin">
-                  <div ng-hide="item.editing" class="h1" > {{item.nombre}} {{ item.mensajeNuevo }}</div>     
+                  <div ng-hide="item.editing" class="h1" > {{item.nombres}} {{ item.mensajeNuevo }}</div>     
                          
                   <div ng-show="item.editing" class="h1">
-                    <input type="text" placeholder="Código de ingrediente" class="form-control w-auto input-lg m-b-n-xxs font-bold" ng-model="item.barcode" >
-                    <input type="text" placeholder="Nombre" class="form-control w-auto input-lg font-bold" ng-model="item.nombre" > 
+                    <input type="text" placeholder="Cedula de Identidad" class="form-control w-auto input-lg m-b-n-xxs font-bold" ng-model="item.cedula" >
+                    <input type="text" placeholder="Nombres" class="form-control w-auto input-lg font-bold" ng-model="item.nombres" > 
+                    <input type="text" placeholder="Apellidos" class="form-control w-auto input-lg font-bold" ng-model="item.apellidos" > 
                   </div>
 
 
@@ -249,7 +250,7 @@
                 <div class="hbox text-center b-b b-light text-sm">  
                                             <!--  <div class="row list-icon">
       <div class="col-md-3 col-sm-4"> -->
-                  <a  href class="col padder-v text-muted b-r b-light" ng-click="openEntradaIngrediente(item)">
+                  <a  href class="col padder-v text-muted b-r b-light" ng-click="openEntradaEspecialista(item)">
                     
 
                     <i class="icon icon-arrow-down  block m-b-xs fa-3x" ></i>
@@ -258,7 +259,7 @@
                   <!-- </div>
                     </div> -->
                   
-                  <a href class="col padder-v text-muted b-r b-light" ng-click="openSalidaIngrediente(item)">
+                  <a href class="col padder-v text-muted b-r b-light" ng-click="openSalidaEspecialista(item)">
                     <i class="icon icon-arrow-up  block m-b-xs fa-3x"></i>
                     <span>Salidas</span>
                   </a>

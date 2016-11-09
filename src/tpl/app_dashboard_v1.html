@@ -56,7 +56,10 @@
         <div class="col-md-5">
           <div class="row row-sm text-center">
           <div class="col-xs-12 m-b-md">
-             <a ng-show="{{app.tipoEstablecimiento=='8'}}"href ui-sref="apps.especialistas" popover="Click para administrar el inventario" popover-trigger="mouseenter" popover-placement="bottom" ng-show="{{app.nivel == '1'}}">
+          <!--    <a ng-show="{{app.tipoEstablecimiento=='8'}}"href ui-sref="apps.especialistas" popover="Click para administrar el inventario" popover-trigger="mouseenter" popover-placement="bottom" ng-show="{{app.nivel == '1'}}"> -->
+
+            <a href ui-sref="apps.especialistas" popover="Click para administrar los especialistas" popover-trigger="mouseenter" popover-placement="bottom" ng-show="{{app.nivel == '1'}}">
+
               <div class="r bg-primary dker item hbox no-border">
                 <div class="col w-xs v-middle hidden-md">
                   <div ng-init="data1=[60,40]" ui-jq="sparkline" ui-options="{{data1}}, {type:'pie', height:40, sliceColors:['{{app.color.warning}}','#fff']}" class="sparkline inline"></div>

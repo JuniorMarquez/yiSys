@@ -26,7 +26,7 @@
 
             </a> -->
              <div class="m-b m-t-sm">
-              <span class="h2 text-light">Administrador </span>
+              <span class="h2 text-light">Clinica o Consultorio </span>
               <p></p>
                 <span class="h3 text-light">{{app.nombre}}</span>
              <!--  <small class="m-l">{{app.nombre}}</small> -->
@@ -37,7 +37,7 @@
     </div>
   </div>
    <div class="clear m-b">
-      <span class=" text-light h5 " >Nombre del usuario Administrador: </span>  <span class=" text-light h4 " >{{item.nombre}}</span>
+      <span class=" text-light h5 " >Nombre de la clinica o consultorio: </span>  <span class=" text-light h4 " >{{item.nombre}}</span>
         <div class="h1">
           <input type="text" placeholder="Nombre completo" class="form-control w-auto input-sm m-b-n-xxs " ng-model="item.nombre" ng-show="item.editing">
           <span class=" text-light h5 " >E-mail del usuario Administrador </span>
@@ -46,23 +46,38 @@
          
            <span class=" text-light h5 " ng-show="item.editing">Contraseña: </span>
            <input type="text" ng-show="item.editing" placeholder="Contraseña" class="form-control w-auto input-sm" ng-model="item.password" > 
+           <span class=" text-light h5 " >Direccion web </span>  <span class=" text-light h4 " >{{item.sitioWeb}}</span>
+        <div class="h1">
+          <input type="text" placeholder="Direccion web" class="form-control w-auto input-sm m-b-n-xxs " ng-model="item.sitioWeb" ng-show="item.editing">
+
+          <span class=" text-light h5 " ><i class="icon-social-facebook"></i> </span>  <span class=" text-light h4 " >{{item.CFace}}</span>
+        <div class="h1">
+          <input type="text" placeholder="Facebook" class="form-control w-auto input-sm m-b-n-xxs " ng-model="item.CFace" ng-show="item.editing">
+
+          <span class=" text-light h5 " ><i class="fa fa-instagram"></i>  </span>  <span class=" text-light h4 " >{{item.CInsta}}</span>
+        <div class="h1">
+          <input type="text" placeholder="Instagram" class="form-control w-auto input-sm m-b-n-xxs " ng-model="item.CInsta" ng-show="item.editing">
+
+          <span class=" text-light h5 " ><i class="fa fa-twitter"></i></span>  <span class=" text-light h4 " >{{item.CTwit}}</span>
+        <div class="h1">
+          <input type="text" placeholder="Twitter" class="form-control w-auto input-sm m-b-n-xxs " ng-model="item.CTwit" ng-show="item.editing">
         </div>      
     </div>
-      <div>
+      <!-- <div>
         Tipo de establecimiento
           <ui-select ng-model="item.tipoEstablecimiento" theme="bootstrap" ng-show="item.editing">
           <ui-select-match placeholder="Seleccione...">{{$select.selected.descripcion}}</ui-select-match>
           <ui-select-choices group-by="'descripcion'" repeat="item.tipoEstablecimiento as item in tiposEstablecimiento | filter: $select.search">
           <span ng-bind-html="item.descripcion | highlight: $select.search"></span>
-              <!-- <small ng-bind-html="item.email | highlight: $select.search"></small> -->
+       
           </ui-select-choices>
           </ui-select>
-      </div>
+      </div> -->
 
 
 
 
- <table class="table table-striped bg-white b-a">
+<!--  <table class="table table-striped bg-white b-a">
       <thead>
         <tr>
           <th style="width: 60px">ESTADO</th>
@@ -98,16 +113,12 @@
           <td colspan="3" class="text-right no-border"><strong>Descuento </strong>(40 %)</td>
           <td>Bs.F. 9.600,00 </td>
         </tr>
-       <!--  <tr>
-          <td colspan="3" class="text-right no-border"><strong>VAT Included in Total</strong></td>
-          <td>$0.00</td>
-        </tr>
-        <tr> -->
+     
           <td colspan="3" class="text-right no-border"><strong>Total</strong></td>
           <td><strong>Bs.F. 86.400.00</strong></td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
 
 
   
@@ -117,8 +128,8 @@
         </div>
     </div> -->
 </div>
-<h2 class="font-thin m-b-lg">Planes y precios</h2>
-  <div class="row no-gutter">
+<!-- <h2 class="font-thin m-b-lg">Planes y precios</h2> -->
+ <!--  <div class="row no-gutter">
     <div class="col-lg-3 col-md-4 col-sm-6">
       <div class="panel b-a">
         <div class="panel-heading wrapper-xs bg-primary no-border">          
@@ -141,18 +152,7 @@
           <li class="list-group-item">
             <i class="icon-close text-danger m-r-xs"></i> 0% de ahorro.
           </li>
-          <!-- <li class="list-group-item">
-            <i class="icon-check text-success m-r-xs"></i> 100 GB Space
-          </li>
-          <li class="list-group-item">
-            <i class="icon-check text-success m-r-xs"></i> 200 user accounts
-          </li>
-          <li class="list-group-item">
-            <i class="icon-close text-danger m-r-xs"></i> <span class="text-l-t">Free support for two years</span>
-          </li>
-          <li class="list-group-item">
-            <i class="icon-close text-danger m-r-xs"></i> <span class="text-l-t">Free upgrade for one year</span>
-          </li> -->
+        
         </ul>
         <div class="panel-footer text-center">
           <a href class="btn btn-primary font-bold m">Pruebélo ahora</a>
@@ -182,15 +182,7 @@
           <li class="list-group-item">
             <i class="icon-check text-success m-r-xs"></i> 40 % de ahorro
           </li>
-          <!-- <li class="list-group-item">
-            <i class="icon-check text-success m-r-xs"></i> 200 user accounts
-          </li>
-          <li class="list-group-item">
-            <i class="icon-check text-success m-r-xs"></i> Free support for two years
-          </li>
-          <li class="list-group-item">
-            <i class="icon-check text-success m-r-xs"></i> Free upgrade for one year
-          </li> -->
+         
         </ul>
         <div class="panel-footer text-center b-t m-t bg-light lter">
           <div class="m-t-sm">Recomendado para usted</div>
@@ -220,15 +212,7 @@
           <li class="list-group-item">
             <i class="icon-check text-success m-r-xs"></i> 33.33 % de ahorro.
           </li>
-          <!-- <li class="list-group-item">
-            <i class="icon-check text-success m-r-xs"></i> 1000 user accounts
-          </li>
-          <li class="list-group-item">
-            <i class="icon-check text-success m-r-xs"></i> Free support for two years
-          </li>
-          <li class="list-group-item">
-            <i class="icon-check text-success m-r-xs"></i> Free upgrade for one year
-          </li> -->
+        
         </ul>
         <div class="panel-footer text-center">
           <a href class="btn btn-primary font-bold m">Comience ahora</a>
@@ -273,6 +257,6 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
-</div>
+<!-- </div> -->

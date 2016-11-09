@@ -21,6 +21,10 @@ app.controller('SigninFormController', ['$scope', '$filter','$http', '$state', '
     $scope.datos={};
     $scope.authError = null;
     $scope.item={};
+    $scope.item.sitioWeb=MyService.data.sitioWeb;
+    $scope.item.CFace=MyService.data.CFace;
+    $scope.item.CInsta=MyService.data.CInsta;
+    $scope.item.CTwit=MyService.data.CTwit;
     $scope.item.nombre=MyService.data.nombre;
     $scope.item.email=MyService.data.email;
     $scope.item.password=MyService.data.password;
@@ -59,6 +63,10 @@ app.controller('SigninFormController', ['$scope', '$filter','$http', '$state', '
     
     usuarioAct.nombre=item.nombre;
     usuarioAct.email=item.email;
+    usuarioAct.sitioWeb=item.sitioWeb;
+    usuarioAct.CFace=item.CFace;
+    usuarioAct.CInsta=item.CInsta;
+    usuarioAct.CTwit=item.CTwit;
     usuarioAct.password=item.password;
       usuarioAct.tipoEstablecimiento=item.tipoEstablecimiento;
      $scope.app.nombre=item.nombre;
@@ -106,6 +114,10 @@ $scope.cargaTiposEstablecimiento();
                       MyService.data.nombre=$scope.datos.nombre;
                       MyService.data.email=$scope.datos.email;
                       MyService.data.password=$scope.datos.password;
+                      MyService.data.sitioWeb=$scope.datos.sitioWeb;
+                      MyService.data.CFace=$scope.datos.CFace;
+                      MyService.data.CInsta=$scope.datos.CInsta;
+                      MyService.data.CTwit=$scope.datos.Ctwit;
                       MyService.data.nivel=$scope.datos.nivel;
                       MyService.data.tipoEstablecimiento=$scope.datos.tipoEstablecimiento;
                        $scope.app.nombre=MyService.data.nombre;

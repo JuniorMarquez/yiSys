@@ -6,15 +6,15 @@ app.controller('InventarioCtrl', ['$scope', '$state','$http', '$filter', '$modal
 
     
     type3: 'info',
-    text3: 'El ingrediente ha sido borrado',
+    text3: 'El especialista ha sido borrado',
     title3: 'Información',
     
     type4: 'success',
-    text4: 'ingrediente agregado con exito',
+    text4: 'especialista agregado con exito',
     title4: 'Exito',
     
     type5: 'info',
-    text5: 'ingrediente editado con exito',
+    text5: 'especialista editado con exito',
     title5: 'Información',
     
     type6: 'info',
@@ -22,7 +22,7 @@ app.controller('InventarioCtrl', ['$scope', '$state','$http', '$filter', '$modal
     title6: 'Información',
     
     type7: 'warning',
-    text7: 'El estado de preñez de este ingrediente se ha anulado',
+    text7: 'El estado de preñez de este especialista se ha anulado',
     title7: 'Cuidado',
 
     type8: 'info',
@@ -31,7 +31,7 @@ app.controller('InventarioCtrl', ['$scope', '$state','$http', '$filter', '$modal
   };
 
   $scope.filter = '';
-  $scope.mensajePrenez = 'Registrar / anular estado de preñéz del ingrediente';
+  $scope.mensajePrenez = 'Registrar / anular estado de preñéz del especialista';
     
   $scope.today = function() {
     $scope.fechaNacimiento = new Date();
@@ -82,25 +82,26 @@ MyService.data.luz=null;
     });
     $scope.categoria = item;
     // $scope.categoria.selected = true;
-    $scope.filter = item.nombre;
-    $http.get('http://localhost:1331/ingrediente/?idEstablecimiento='+MyService.data.idEstablecimiento).then(function (resp) {
+    $scope.filter = item.nombres;
+    $http.get('http://localhost:1331/especialista/?idEstablecimiento='+MyService.data.idEstablecimiento).then(function (resp) {
       $scope.items = resp.data.results;
       // $scope.item = null;  
       // $scope.item.selected = true;
     });
-    $scope.selectItem2(MyService.data.ingrediente);
+    $scope.selectItem2(MyService.data.especialista);
   };
 $scope.selectItem2 = function(item){  
 
-     $http.get('http://localhost:1331/ingrediente/?idEstablecimiento='+MyService.data.idEstablecimiento).then(function (resp) {
+     $http.get('http://localhost:1331/especialista/?idEstablecimiento='+MyService.data.idEstablecimiento).then(function (resp) {
       $scope.items = resp.data.results;
       // $scope.item = null;  
       // $scope.item.selected = true;
     });
     var identificador =item.id;
-        var numero =item.barcode;
-        var nombre =item.nombre;
-    MyService.data.hembra = nombre;
+        var numero =item.cedula;
+        var nombres =item.nombres;
+        var apellidos = item.apellidos;
+    MyService.data.hembra = nombres;
      MyService.data.numero = numero;
     MyService.data.identificador = identificador;
     angular.forEach($scope.items, function(item) {
@@ -119,7 +120,7 @@ $scope.selectItem2 = function(item){
     }
  // if (item.categoria == 'Becerras'){
  //   $scope.alerts = [
- //  { type: 'danger', msg: 'Por su edad, este ingrediente debería estar en el categoria de las Vacas' }
+ //  { type: 'danger', msg: 'Por su edad, este especialista debería estar en el categoria de las Vacas' }
  //  ];
  //    }
 
@@ -131,29 +132,29 @@ $scope.selectItem2 = function(item){
     }
 
     $scope.item.selected = true;
-    $http.get('http://localhost:1331/ingrediente/?idEstablecimiento='+MyService.data.idEstablecimiento).then(function (resp) {
+    $http.get('http://localhost:1331/especialista/?idEstablecimiento='+MyService.data.idEstablecimiento).then(function (resp) {
       $scope.especialistas = resp.data.results;
     });
       
     // var pas = item.id;
-    // $scope.especialistasFiltrados = $scope.especialistas.filter(function (ingrediente) {
-    //   return (ingrediente.idingrediente == pas );
+    // $scope.especialistasFiltrados = $scope.especialistas.filter(function (especialista) {
+    //   return (especialista.idespecialista == pas );
     // });
 
   };
-// if ($state=='apps.ingrediente'){
+// if ($state=='apps.especialista'){
 
 
 // };
     if (MyService.data.luz){
         $scope.items = null;
         $scope.item=null;
-        // var ingrediente = MyService.data.ingrediente;
-        // alert("ingrediente:" +MyService.data.ingrediente.id);
-        $scope.selectGroup2(MyService.data.ingrediente);
-        // $scope.selectItem(ingrediente);
+        // var especialista = MyService.data.especialista;
+        // alert("especialista:" +MyService.data.especialista.id);
+        $scope.selectGroup2(MyService.data.especialista);
+        // $scope.selectItem(especialista);
         MyService.data.luz=null;
-        MyService.data.ingrediente=null;
+        MyService.data.especialista=null;
     };
 
 
@@ -169,7 +170,7 @@ $scope.selectItem2 = function(item){
 
 
   // $scope.alerts = [
-  // { type: 'danger', msg: 'Por su edad, este ingrediente debería estar en el categoria de las Vacas' }
+  // { type: 'danger', msg: 'Por su edad, este especialista debería estar en el categoria de las Vacas' }
   // ];
 
   $scope.closeAlert = function(index) {
@@ -205,13 +206,13 @@ $scope.selectItem2 = function(item){
   };
 
   $scope.consultar = function(item){
-  MyService.data.ingredienteConsultado = null;
-  MyService.data.ingredienteConsultado = item;
-  if (MyService.data.ingredienteConsultado.sexo==="Hembra"){
-    $state.go('apps.historicoingrediente');
+  MyService.data.especialistaConsultado = null;
+  MyService.data.especialistaConsultado = item;
+  if (MyService.data.especialistaConsultado.sexo==="Hembra"){
+    $state.go('apps.historicoespecialista');
     }
-  if (MyService.data.ingredienteConsultado.sexo==="Macho"){
-    $state.go('apps.historicoingredienteMacho');
+  if (MyService.data.especialistaConsultado.sexo==="Macho"){
+    $state.go('apps.historicoespecialistaMacho');
     }
   };
   $scope.carga = function(){
@@ -223,7 +224,7 @@ $scope.selectItem2 = function(item){
       $scope.departamentos = resp.data.results;
     });
  $scope.cargaespecialistas = function(){
-      $http.get('http://localhost:1331/ingrediente/?idEstablecimiento='+MyService.data.idEstablecimiento).then(function (resp) {
+      $http.get('http://localhost:1331/especialista/?idEstablecimiento='+MyService.data.idEstablecimiento).then(function (resp) {
         $scope.especialistas = resp.data.results;
       });
     };
@@ -252,11 +253,11 @@ $scope.selectItem2 = function(item){
       $log.info('Modal dismissed at: ' + new Date());
     });
   };
-   $scope.openConfirmBorraringrediente = function (item) {
+   $scope.openConfirmBorrarEspecialista = function (item) {
     var identificador=item.id;
     MyService.data.identificador = identificador;
       var modalInstance = $modal.open({
-        templateUrl: 'modalConfirmBorraringrediente.html',
+        templateUrl: 'modalConfirmBorrarEspecialista.html',
         controller: 'ModalInstanceCtrl',
         size: 'sm',
         resolve: {
@@ -397,11 +398,11 @@ $scope.selectItem2 = function(item){
     });
   };
 
-  $scope.openEntradaIngrediente = function (item) {
+  $scope.openEntradaEspecialista = function (item) {
     var identificador=item.id;
     MyService.data.identificador = identificador;
       var modalInstance = $modal.open({
-        templateUrl: 'modalEntradaIngrediente.html',
+        templateUrl: 'modalEntradaEspecialista.html',
         controller: 'ModalInstanceCtrl',
         size: 'sm',
         resolve: {
@@ -451,11 +452,11 @@ $scope.selectItem2 = function(item){
     });
     $scope.calculoExistencia(identificador);    
   };
-   $scope.openSalidaIngrediente = function (item) {
+   $scope.openSalidaEspecialista = function (item) {
     var identificador=item.id;
     MyService.data.identificador = identificador;
       var modalInstance = $modal.open({
-        templateUrl: 'modalSalidaIngrediente.html',
+        templateUrl: 'modalSalidaEspecialista.html',
         controller: 'ModalInstanceCtrl',
         size: 'sm',
         resolve: {
@@ -580,23 +581,23 @@ $scope.openPeso = function (item) {
     $scope.categoria = item;
     $scope.categoria.selected = true;
     $scope.filter = item.nombre;
-    $http.get('http://localhost:1331/ingrediente/?idEstablecimiento='+MyService.data.idEstablecimiento).then(function (resp) {
+    $http.get('http://localhost:1331/especialista/?idEstablecimiento='+MyService.data.idEstablecimiento).then(function (resp) {
       $scope.items = resp.data.results;
       $scope.item = null;  
       // $scope.item.selected = true;
     });
   };
-  $scope.calculoExistencia=function(idingrediente){
+  $scope.calculoExistencia=function(idespecialista){
     var entradas=0;
     var salidas=0;
     var existencia=0;
     
-    $http.get('http://localhost:1331/entrada/?idingrediente='+idingrediente).then(function (resp) {
+    $http.get('http://localhost:1331/entrada/?idEspecialista='+idEspecialista).then(function (resp) {
       $scope.entradas=resp.data.results;
       for (var i=0;i<$scope.entradas.length;i++){
         entradas=entradas+$scope.entradas[i].cantidad;
         }
-        $http.get('http://localhost:1331/salida/?idingrediente='+idingrediente).then(function (resp) {
+        $http.get('http://localhost:1331/salida/?idEspecialista='+idEspecialista).then(function (resp) {
           $scope.salidas = resp.data.results;
           for (var i=0;i<$scope.salidas.length;i++){
             salidas=salidas+$scope.salidas[i].cantidad;
@@ -606,17 +607,17 @@ $scope.openPeso = function (item) {
       });
     });    
   };
-  $scope.calculoExistenciaespecialistas=function(idingrediente){
+  $scope.calculoExistenciaespecialistas=function(idEspecialista){
    var entradasespecialistas=0;
     var salidasespecialistas=0;
     var existenciaespecialistas=0;
     
-    $http.get('http://localhost:1331/entradaingrediente/?idingrediente='+idingrediente).then(function (resp) {
+    $http.get('http://localhost:1331/entradaEspecialista/?idEspecialista='+idEspecialista).then(function (resp) {
       $scope.entradasespecialistas=resp.data.results;
       for (var i=0;i<$scope.entradasespecialistas.length;i++){
         entradasespecialistas=entradasespecialistas+$scope.entradasespecialistas[i].cantidad;
         }
-        $http.get('http://localhost:1331/salidaingrediente/?idingrediente='+idingrediente).then(function (resp) {
+        $http.get('http://localhost:1331/salidaEspecialista/?idEspecialista='+idEspecialista).then(function (resp) {
           $scope.salidasespecialistas = resp.data.results;
           for (var i=0;i<$scope.salidasespecialistas.length;i++){
             salidasespecialistas=salidasespecialistas+$scope.salidasespecialistas[i].cantidad;
@@ -637,7 +638,7 @@ $scope.openPeso = function (item) {
     $scope.alerts=null;
     if(item.existenciaespecialistas<validador){
       $scope.alerts = [
-      { type: 'danger', msg: 'La disponibilidad de este ingrediente se encuentra por debajo del stock minimo definido' }
+      { type: 'danger', msg: 'La disponibilidad de este especialista se encuentra por debajo del stock minimo definido' }
       ];
     };
   };
@@ -645,9 +646,10 @@ $scope.openPeso = function (item) {
   $scope.selectItem = function(item){    
     $scope.alerts=null;
     var identificador =item.id;
-    var numero =item.barcode;
-    var nombre =item.nombre;
-    MyService.data.hembra = nombre;
+    var numero =item.cedula;
+    var nombres =item.nombres;
+    var apellidos = item.apellidos;
+    MyService.data.hembra = nombres;
     MyService.data.numero = numero;
     MyService.data.identificador = identificador;
     angular.forEach($scope.items, function(item) {
@@ -657,12 +659,12 @@ $scope.openPeso = function (item) {
     $scope.calculoExistenciaespecialistas(identificador);
     $scope.item = item;
     $scope.item.selected = true;
-    $http.get('http://localhost:1331/ingrediente/?idEstablecimiento='+MyService.data.idEstablecimiento).then(function (resp) {
+    $http.get('http://localhost:1331/especialista/?idEstablecimiento='+MyService.data.idEstablecimiento).then(function (resp) {
       $scope.especialistas = resp.data.results;
       });
      var pas = item.id;
-    $scope.especialistasFiltrados = $scope.especialistas.filter(function (ingrediente) {
-      return (ingrediente.idingrediente == pas );
+    $scope.especialistasFiltrados = $scope.especialistas.filter(function (especialista) {
+      return (especialista.idEspecialista == pas );
       });
     setTimeout(function() {$scope.validador(item);}, 500);
     
@@ -671,17 +673,17 @@ $scope.openPeso = function (item) {
   
 
   $scope.deleteItem = function(item){
-    $http.delete('http://localhost:1331/ingrediente/'+item.id , item)
+    $http.delete('http://localhost:1331/especialista/'+item.id , item)
     $scope.items.splice($scope.items.indexOf(item), 1);
-    $scope.item = $filter('orderBy')($scope.items, 'nombre')[0];
+    $scope.item = $filter('orderBy')($scope.items, 'nombres')[0];
     if($scope.item) $scope.item.selected = true;
   };
 
-  $scope.deleteingrediente = function(ingrediente){
-    $http.delete('http://localhost:1331/ingrediente/'+ingrediente.id , ingrediente)
-    $scope.especialistasFiltrados.splice($scope.especialistas.indexOf(ingrediente), 1);
-    $scope.ingrediente = $filter('orderBy')($scope.especialistas, 'nombre')[0];
-    if($scope.ingrediente) $scope.ingrediente.selected = true;
+  $scope.deleteEspecialista = function(especialista){
+    $http.delete('http://localhost:1331/especialista/'+especialista.id , especialista)
+    $scope.especialistasFiltrados.splice($scope.especialistas.indexOf(especialista), 1);
+    $scope.especialista = $filter('orderBy')($scope.especialistas, 'nombres')[0];
+    if($scope.especialista) $scope.especialista.selected = true;
   };
 
   $scope.createItem = function(){
@@ -744,32 +746,33 @@ $scope.openPeso = function (item) {
     }
 
   }
-  $scope.doneEditingingrediente = function(item){
-    var ingredienteAct = {};
-     MyService.data.ideningrediente=item.id;
-    ingredienteAct.barcode=item.barcode;
-    ingredienteAct.nombre=item.nombre;
-    ingredienteAct.idEstablecimiento=item.idEstablecimiento;
-    ingredienteAct.categoria=item.categoria;
- ingredienteAct.idUsuario=item.idUsuario;
- ingredienteAct.departamento=item.departamento;
- ingredienteAct.stockMinimo=item.stockMinimo;
+  $scope.doneEditingEspecialista = function(item){
+    var especialistaAct = {};
+     MyService.data.idenEspecialista=item.id;
+    especialistaAct.cedula=item.cedula;
+    especialistaAct.nombres=item.nombres;
+    especialistaAct.apellidos=item.apellidos;
+    especialistaAct.idEstablecimiento=item.idEstablecimiento;
+    especialistaAct.categoria=item.categoria;
+ especialistaAct.idUsuario=item.idUsuario;
+ especialistaAct.departamento=item.departamento;
+ especialistaAct.stockMinimo=item.stockMinimo;
    
     
 
    
-    if (MyService.data.ideningrediente){
+    if (MyService.data.idenEspecialista){
       $scope.pop4();
-      $http.put('http://localhost:1331/ingrediente/'+MyService.data.ideningrediente , ingredienteAct)
+      $http.put('http://localhost:1331/especialista/'+MyService.data.idenEspecialista , especialistaAct)
     }
     else {
       $scope.pop3();;
-      $http.post('http://localhost:1331/ingrediente/', ingredienteAct)
+      $http.post('http://localhost:1331/especialista/', especialistaAct)
     }
     $http.get('http://localhost:1331/categoria/?idEstablecimiento='+MyService.data.idEstablecimiento).then(function (resp) {
       $scope.categorias = resp.data.results;
     });
-    $http.get('http://localhost:1331/ingrediente/?idEstablecimiento='+MyService.data.idEstablecimiento).then(function (resp) {
+    $http.get('http://localhost:1331/especialista/?idEstablecimiento='+MyService.data.idEstablecimiento).then(function (resp) {
       $scope.app.states = resp.data.results;
     });
     // $scope.items = null;
